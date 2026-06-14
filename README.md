@@ -109,3 +109,14 @@ create virtual environment
 add env file with GEMINI_API_KEY="Your gemini api key"
 
 run streamlit run app.py
+
+## Questions it answers
+ Explaination of the symptoms
+ Example Questions:
+      My head hurts and I feel nauseous
+      I have fever, cough, and difficulty breathing
+
+## Team Members
+   Roopraj Murmu 
+   Swarna Champa Murmu 
+   Mutteni Rishitha 
