@@ -5,3 +5,5 @@ google-genai
 pydantic
 rank_bm25
 dotenv
+streamlit 
+fpdf
