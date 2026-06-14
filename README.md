@@ -71,3 +71,28 @@ Healthcare professionals often face challenges in:
 * 📁 Flexible JSON-based medical knowledge base
 
 ---
+## Advantages Over Traditional Clinical Reference Systems
+
+  While Electronic Health Records (EHR) and Clinical Decision Support Systems 
+  (CDSS) like UpToDate and Lexicomp provide medication recommendations, they 
+  have key limitations:
+  
+  1. **Structured Input Required** – Doctors must know and type the exact 
+     condition name, not patient-described symptoms.
+  
+  2. **Unstructured Output** – Information is returned as dense text paragraphs, 
+     not machine-readable JSON for automated processing.
+  
+  3. **No Prescription Workflow** – These systems suggest medicines but don't 
+     help build, edit, or finalize a prescription interactively.
+  
+  4. **Cost & Lock-in** – Most solutions are proprietary, expensive, and 
+     require ongoing subscriptions.
+  
+  5. **No Symptom-to-Condition Matching** – They can't take "I have a fever 
+     with chest pain" and automatically map it to potential conditions.
+  
+  Medical RAG bridges this gap by accepting natural language symptom descriptions, 
+  automatically matching them to conditions, extracting structured medicine data, 
+  and providing an interactive prescription builder – all in an open-source, 
+  vectorless RAG architecture.
