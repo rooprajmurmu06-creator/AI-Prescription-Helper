@@ -7,3 +7,4 @@ rank_bm25
 dotenv
 streamlit 
 fpdf
+rapidfuzz
