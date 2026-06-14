@@ -117,6 +117,6 @@ run streamlit run app.py
       I have fever, cough, and difficulty breathing
 
 ## Team Members
-   Roopraj Murmu 
-   Swarna Champa Murmu 
+   Roopraj Murmu, 
+   Swarna Champa Murmu ,
    Mutteni Rishitha 
