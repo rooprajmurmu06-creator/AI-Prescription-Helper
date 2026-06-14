@@ -97,6 +97,9 @@ Healthcare professionals often face challenges in:
   and providing an interactive prescription builder – all in an open-source, 
   vectorless RAG architecture.
 
+## Documents used
+  https://appxcontent.kaxa.in/notes2/2024-07-08-0.31861271748138975.pdf
+  
 ## Instructions
 
 Clone the code
