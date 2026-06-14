@@ -1,7 +1,6 @@
-pandas 
+
 jsonlines
-matplotlib 
-plotly
+
 scipy
 rapidfuzz
 google-genai
