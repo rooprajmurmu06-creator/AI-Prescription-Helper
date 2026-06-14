@@ -4,7 +4,7 @@ rapidfuzz
 google-genai
 pydantic
 rank_bm25
-dotenv
+python-dotenv
 streamlit 
 fpdf
 rapidfuzz
