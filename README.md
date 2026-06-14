@@ -96,3 +96,13 @@ Healthcare professionals often face challenges in:
   automatically matching them to conditions, extracting structured medicine data, 
   and providing an interactive prescription builder – all in an open-source, 
   vectorless RAG architecture.
+
+## Instructions
+
+Clone the code
+
+create virtual environment
+
+and env file with GEMINI_API_KEY="Your gemini api key"
+
+run streamlit app.py
