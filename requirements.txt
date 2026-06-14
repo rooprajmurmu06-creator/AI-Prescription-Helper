@@ -1,8 +1,10 @@
-neo4j 
 pandas 
-tqdm 
 jsonlines
-networkx 
 matplotlib 
 plotly
 scipy
+rapidfuzz
+google-genai
+pydantic
+rank_bm25
+dotenv
