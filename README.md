@@ -2,7 +2,7 @@
 
 ## 🎯 Project Description
 
-Medical RAG is an intelligent medical information system that leverages **Retrieval-Augmented Generation (RAG)** to analyze patient symptoms and recommend appropriate medications with dosage information. The system combines traditional information retrieval techniques such as **BM25** and **fuzzy matching** with **Google Gemini** to provide accurate, context-aware medical recommendations.
+Medical RAG is an intelligent medical information system that leverages **Vectorless Retrieval-Augmented Generation (RAG)** to analyze patient symptoms and recommend appropriate medications with dosage information. The system combines traditional information retrieval techniques such as **BM25** and **fuzzy matching** with **Google Gemini** to provide accurate, context-aware medical recommendations.
 
 It also includes an **interactive prescription builder**, allowing doctors to add, remove, and manage medications before generating the final prescription.
 
