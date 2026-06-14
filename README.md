@@ -106,6 +106,6 @@ Clone the code
 
 create virtual environment
 
-and env file with GEMINI_API_KEY="Your gemini api key"
+add env file with GEMINI_API_KEY="Your gemini api key"
 
 run streamlit app.py
