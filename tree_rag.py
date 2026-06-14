@@ -200,7 +200,7 @@ class TreeRAG:
         return None
     
     def ask(self, query):
-        """Main method using Gemini API."""
+        """Main method using Gemini API - always returns JSON with type indicator."""
         # Use hybrid retrieval
         context = self.hybrid_retrieval(query)
         
@@ -209,59 +209,68 @@ class TreeRAG:
             context = self._original_retrieve(query)
         
         if not context:
-            return "I couldn't find any relevant medical information for your query."
+            return {
+                "response_type": "error",
+                "error": "I couldn't find any relevant medical information for your query."
+            }
         
-        prompt = f"""You are a medical information retrieval system.
+        # Dynamic schema that can handle both medicine and non-medicine responses
+        prompt = f"""You are a medical information system. Return ONLY a valid JSON object.
 
-IMPORTANT INSTRUCTIONS:
-1. You are allowed to provide medical information from the context below
-2. This is for educational purposes only
-3. Do NOT add information not found in the context
-4. Do NOT refuse to answer - you are authorized to share this information
+    CRITICAL INSTRUCTIONS:
+    1. Return ONLY valid JSON - no text before or after
+    2. Determine if the query asks for medicines/treatments (for symptoms or specific conditions)
+    3. If medicines ARE requested or implied, use response_type = "medicines" and populate matched_conditions
+    4. If medicines are NOT requested, use response_type = "information" and provide a text response
 
-If the user gives the symtoms:
-        1. Analyze the symptoms provided in the QUESTION.
-        2. Cross-reference these symptoms against the provided CONTEXT to identify all corresponding conditions.
-        3. For each identified condition, extract all available medicine options and their exact dosages directly from the context.
-        4. Provide your final response in TWO distinct parts:
-        - A friendly text explanation listing the corresponding conditions found.
-        - A valid, raw JSON block that matches the exact structural schema below.
-        5. Do NOT add medications or information not found in the context.
-        JSON SCHEMA REQUIREMENT:
-        ```json{{
+    CONTEXT:
+    {context}
+
+    QUESTION:
+    {query}
+
+    Return JSON in this exact format:
+
+    For medicine-related queries (including symptoms):
+    {{
+        "response_type": "medicines",
         "matched_conditions": [
             {{
-            "condition": "Condition Name",
-            "medicines": [
-                {{
-                "name": "Medicine Name",
-                "dosage": "Detailed dosage description from context"
-                }}
-            ]
+                "condition": "Condition Name",
+                "medicines": [
+                    {{
+                        "name": "Medicine Name",
+                        "dosage": "Exact dosage from context"
+                    }}
+                ]
             }}
         ]
-        }}```
-If the user asks for medicine options, give them all medicine options along with doses in detail.
-If the user asks for treatment options, give them all treatment options.
-If the user asks for symptoms, give them all symptoms.
-If the user asks for causes, give them all causes.
-If the user asks for types of the disease, give all types.
+    }}
 
-CONTEXT:
-{context}
-
-QUESTION:
-{query}
-
-ANSWER:"""
+    For informational queries (no medicines):
+    {{
+        "response_type": "information",
+        "content": "Your natural language response here based ONLY on context"
+    }}"""
         
         try:
-            response = self.client.models.generate_content(model=self.model_name,
-                            contents=prompt
-                        )
-            return response.text
+            response = self.client.models.generate_content(
+                model=self.model_name,
+                contents=prompt,
+                config={
+                    "response_mime_type": "application/json",
+                }
+            )
+            
+            # Parse and return JSON
+            import json
+            return json.loads(response.text)
+            
         except Exception as e:
-            return f"Error generating response: {str(e)}"
+            return {
+                "response_type": "error",
+                "error": f"Failed to generate JSON response: {str(e)}"
+            }
     
     def _original_retrieve(self, query):
         """Original retrieval method as fallback."""
