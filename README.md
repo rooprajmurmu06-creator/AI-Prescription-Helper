@@ -108,4 +108,4 @@ create virtual environment
 
 add env file with GEMINI_API_KEY="Your gemini api key"
 
-run streamlit app.py
+run streamlit run app.py
